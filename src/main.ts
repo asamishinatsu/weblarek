@@ -3,7 +3,6 @@ import { EventEmitter } from './components/base/Events';
 import { Catalog } from './components/models/Catalog';
 import { Cart } from './components/models/Cart';
 import { Buyer } from './components/models/Buyer';
-import { apiProducts } from './utils/data';
 import { Api } from './components/base/Api';
 import { API_URL, settings } from './utils/constants'; 
 import { LarekApi } from './components/services/LarekApi';
