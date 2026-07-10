@@ -1,4 +1,4 @@
-import type { TPayment, IBuyer } from '../../types';
+import type { TPayment, IBuyer, ValidationErrors } from '../../types';
 import type { EventEmitter } from '../base/Events';
 
 /**
@@ -6,7 +6,7 @@ import type { EventEmitter } from '../base/Events';
  * Отвечает за хранение, управление и валидацию данных пользователя в процессе оформления заказа.
  **/
 export class Buyer {
-  private payment: TPayment = '';
+  private payment: TPayment | '' = '';
   private address: string = '';
   private email: string = '';
   private phone: string = '';
@@ -57,8 +57,8 @@ export class Buyer {
    * Валидирует данные покупателя.
    * @returns объект с ошибками.
    */
-  validate(): Record<string, string> {
-    const errors: Record<string, string> = {};
+  validate(): ValidationErrors {
+    const errors: ValidationErrors = {};
     if (!this.payment) {
       errors.payment = 'Выберите способ оплаты';
     }

@@ -10,11 +10,11 @@ import { LarekApi } from './components/services/LarekApi';
 const baseApi = new Api(API_URL, settings);
 const api = new LarekApi(baseApi);
 
-let events = new EventEmitter();
+const events = new EventEmitter();
 
-let catalog = new Catalog(events);
-let cart: Cart = new Cart(events);
-let buyer: Buyer = new Buyer(events);
+const catalog = new Catalog(events);
+const cart = new Cart(events);
+const buyer = new Buyer(events);
 
 api.getProductsList()
   .then((data) => {

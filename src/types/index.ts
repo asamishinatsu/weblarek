@@ -14,10 +14,12 @@ export interface IProduct {
     price: number | null;
 }
 
-export type TPayment = 'cash' | 'card' | '';
+export type TPayment = 'cash' | 'card';
+
+export type ValidationErrors = Partial<Record<keyof IBuyer, string>>;
 
 export interface IBuyer {
-    payment: TPayment;
+    payment: TPayment | '';
     address: string;
     email: string;
     phone: string;
@@ -37,3 +39,4 @@ export interface IOrderResult {
     id: string;
     total: number;
 }
+
