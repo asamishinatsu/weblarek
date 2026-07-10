@@ -119,10 +119,10 @@ interface IProduct {
 #### Интерфейс покупателя (IBuyer)
 Описывает данные (Buyer), которые пользователь заполняет при оформлении заказа.
 ```typescript
-type TPayment = 'cash' | 'card' | '';
+type TPayment = 'cash' | 'card';
 
 interface IBuyer {
-  payment: TPayment;
+  payment: TPayment | '';
   address: string;
   email: string;
   phone: string;
@@ -177,7 +177,7 @@ interface IBuyer {
 - `constructor(events: EventEmitter)` - принимает брокер событий для инициализации событий при изменении данных или ошибках валидации.
 
 **Поля класса (Данные):**
-- `payment: TPayment` - вид оплаты (онлайн или при получении).
+- `payment: TPayment | ''` - вид оплаты (онлайн или при получении).
 - `address: string` - адрес доставки.
 - `email: string` - контактный email.
 - `phone: string` - контактный телефон.
