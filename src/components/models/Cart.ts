@@ -22,7 +22,7 @@ export class Cart {
    */
   add(item: IProduct): void {
     this.items.push(item);
-    this.events.emit("cart:updated", this.getItems);
+    this.events.emit("cart:updated", this.getItems());
   }
 
   /**
@@ -31,7 +31,7 @@ export class Cart {
    */
   remove(id: string): void {
     this.items = this.items.filter((product) => product.id !== id);
-    this.events.emit("cart:updated", this.getItems);
+    this.events.emit("cart:updated", this.getItems());
   }
 
   /**

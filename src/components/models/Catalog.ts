@@ -7,7 +7,7 @@ import type { EventEmitter } from '../base/Events';
  */
 export class Catalog {
   private items: IProduct[] = [];
-  private preview: IProduct | null = null;
+  private selectedItem: IProduct | null = null;
   private events: EventEmitter;
 
   /**
@@ -38,17 +38,17 @@ export class Catalog {
    * Сохраняет товар для детального просмотра и инициирует событие открытия превью.
    * @param item - объект товара для сохранения.
    */
-  set setPreview(item: IProduct) {
-    this.preview = item;
-    this.events.emit('catalog:preview', this.preview);
+  set preview(item: IProduct) {
+    this.selectedItem = item;
+    this.events.emit('catalog:preview', this.selectedItem);
   }
 
   /**
    * Возвращает выбранный товар для просмотра.
    * @returns объект товара для просмотра или null, если ничего не выбрано.
    */
-  get getPreview(): IProduct | null {
-    return this.preview;
+  get preview(): IProduct | null {
+    return this.selectedItem;
   }
 
   /**

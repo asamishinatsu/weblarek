@@ -1,7 +1,7 @@
 @use "variables" as *;
 @use "mixins";
 
-.basket {
+.cart {
   @include mixins.flex(column);
   gap: 2rem;
   height: 60vh;

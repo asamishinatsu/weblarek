@@ -21,8 +21,8 @@
 				<a class="header__logo" href="/">
 					<img class="header__logo-image" src="<%=require('../images/logo.svg')%>" alt="Web-Larek! logo" />
 				</a>
-				<button class="header__basket">
-					<span class="header__basket-counter">0</span>
+				<button class="header__cart">
+					<span class="header__cart-counter">0</span>
 				</button>
 			</div>
 		</header>
@@ -71,24 +71,24 @@
 		</div>
 	</template>
 
-	<template id="card-basket">
-		<li class="basket__item card card_compact">
-			<span class="basket__item-index">1</span>
+	<template id="card-cart">
+		<li class="cart__item card card_compact">
+			<span class="cart__item-index">1</span>
 			<span class="card__title">Фреймворк куки судьбы</span>
 			<span class="card__price">2500 синапсов</span>
-			<button class="basket__item-delete card__button" aria-label="удалить"></button>
+			<button class="cart__item-delete card__button" aria-label="удалить"></button>
 		</li>
 	</template>
 
-	<template id="basket">
-		<div class="basket">
+	<template id="cart">
+		<div class="cart">
 			<h2 class="modal__title">Корзина</h2>
-			<ul class="basket__list">
+			<ul class="cart__list">
 				
 			</ul>
 			<div class="modal__actions">
-				<button class="button basket__button">Оформить</button>
-				<span class="basket__price">0 синапсов</span>
+				<button class="button cart__button">Оформить</button>
+				<span class="cart__price">0 синапсов</span>
 			</div>
 		</div>
 	</template>

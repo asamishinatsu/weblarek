@@ -21,8 +21,8 @@
 }
 
 .icon-back:before{content:'\0041';}
-.icon-basket:before{content:'\0042';}
-.icon-basket-2:before{content:'\0043';}
+.icon-cart:before{content:'\0042';}
+.icon-cart-2:before{content:'\0043';}
 .icon-chevron:before{content:'\0044';}
 .icon-close:before{content:'\0045';}
 .icon-square-check-regular:before{content:'\0046';}
