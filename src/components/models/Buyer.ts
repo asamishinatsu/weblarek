@@ -55,33 +55,24 @@ export class Buyer {
   }
 
   /**
-   * Валидирует поля первого шага оформления.
-   * @returns объект с ошибками.
-   */
-  validateOrder(): ValidationErrors {
-    const errors: ValidationErrors = {};
-    if (!this.payment) errors.payment = 'Выберите способ оплаты';
-    if (!this.address) errors.address = 'Введите адрес доставки';
-    return errors;
-  }
-
-  /**
-   * Валидирует поля второго шага оформления.
-   * @returns объект с ошибками.
-   */
-  validateContacts(): ValidationErrors {
-    const errors: ValidationErrors = {};
-    if (!this.email) errors.email = 'Введите email';
-    if (!this.phone) errors.phone = 'Введите телефон';
-    return errors;
-  }
-
-  /**
    * Валидирует данные покупателя.
    * @returns объект с ошибками.
    */
   validate(): ValidationErrors {
-    return { ...this.validateOrder(), ...this.validateContacts() };
+    const errors: ValidationErrors = {};
+    if (!this.payment) {
+      errors.payment = 'Выберите способ оплаты';
+    }
+    if (!this.address) {
+      errors.address = 'Введите адрес доставки';
+    }
+    if (!this.email) {
+      errors.email = 'Введите email';
+    }
+    if (!this.phone) {
+      errors.phone = 'Введите телефон';
+    }
+    return errors;
   }
 
   /**

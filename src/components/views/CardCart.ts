@@ -1,6 +1,6 @@
 import { Card } from "./Card";
 import { ensureElement } from "../../utils/utils";
-import { IEvents } from "../base/Events";
+import { ICardActions, ICardData } from "../../types/views_interfaces";
 
 /**
  * Отвечает за компактное отображение товара в списке корзины.
@@ -11,16 +11,16 @@ export class CardCart extends Card {
 
   /**
    * @param container ссылка на DOM элемент за отображение, которого он отвечает
-   * @param events объект для работы с событиями
+   * @param actions объект для работы с событиями
    */
-  constructor(container: HTMLElement, private events: IEvents) {
+  constructor(container: HTMLElement, actions?: ICardActions) {
     super(container);
     this.itemIndexElement = ensureElement<HTMLElement>('.cart__item-index', this.container);
     this.deleteButtonElement = ensureElement<HTMLButtonElement>('.cart__item-delete', this.container);
 
-    this.deleteButtonElement.addEventListener('click', () => {
-      this.events.emit('cart:remove', { id: this.getId() });
-    });
+    if (actions?.onClick) {
+      this.deleteButtonElement.addEventListener('click', actions.onClick);
+    }
   }
 
   /**

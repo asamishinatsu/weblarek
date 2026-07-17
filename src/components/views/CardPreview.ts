@@ -1,37 +1,73 @@
 import { Card } from "./Card";
 import { ensureElement } from "../../utils/utils";
-import { IEvents } from "../base/Events";
-import { ICardPreviewData } from "../../types/views_interfaces";
+import { ICardActions, ICardPreviewData } from "../../types/views_interfaces";
+import { categoryMap } from "../../utils/constants";
 
 /**
  * Отвечает за отображение детальной информации о товаре в модальном окне.
  */
 export class CardPreview extends Card<ICardPreviewData> {
+  protected imageElement: HTMLImageElement;
+  protected categoryElement: HTMLElement;
+  protected descriptionElement: HTMLElement;
   private addToCartButtonElement: HTMLButtonElement;
 
   /**
    * @param container ссылка на DOM элемент за отображение, которого он отвечает
-   * @param events объект для работы с событиями
+   * @param actions объект для работы с событиями
    */
-  constructor(container: HTMLElement, private events: IEvents) {
+  constructor(container: HTMLElement, actions?: ICardActions) {
     super(container);
+    this.imageElement = ensureElement<HTMLImageElement>('.card__image', this.container);
+    this.categoryElement = ensureElement<HTMLElement>('.card__category', this.container);
+    this.descriptionElement = ensureElement<HTMLElement>('.card__text', this.container);
     this.addToCartButtonElement = ensureElement<HTMLButtonElement>('.card__button', this.container);
 
-    this.addToCartButtonElement.addEventListener('click', () => {
-      this.events.emit('cart:toggle', { id: this.getId() });
-    });
+    if (actions?.onClick) {
+      this.addToCartButtonElement.addEventListener('click', actions.onClick);
+    }
   }
 
   /**
-   * @param param0 объект с состоянием кнопки добавления в корзину
+   * @param path путь к изображению
    */
-  set buttonState({ inCart, available }: { inCart: boolean; available: boolean }) {
-    if (!available) {
-      this.addToCartButtonElement.textContent = 'Недоступно';
-      this.addToCartButtonElement.disabled = true;
-      return;
+  set image(path: string) {
+    if (this.imageElement) {
+      this.setImage(this.imageElement, path);
     }
-    this.addToCartButtonElement.textContent = inCart ? 'Удалить из корзины' : 'В корзину';
-    this.addToCartButtonElement.disabled = false;
+  }
+
+  /**
+   * @param cat категория карточки
+   */
+  set category(cat: string) {
+    if (this.categoryElement) {
+      this.categoryElement.textContent = cat;
+      const modifier = categoryMap[cat as keyof typeof categoryMap];
+      this.categoryElement.className = modifier ? `card__category ${modifier}` : 'card__category';
+    }
+  }
+
+  /**
+   * @param text описание карточки
+   */
+  set description(text: string) {
+    if (this.descriptionElement) {
+      this.descriptionElement.textContent = text;
+    }
+  }
+
+  /**
+   * @param text текст кнопки
+   */
+  set buttonText(text: string) {
+    this.addToCartButtonElement.textContent = text;
+  }
+
+  /**
+   * @param isDisabled состояние кнопки
+   */
+  set buttonDisabled(isDisabled: boolean) {
+    this.addToCartButtonElement.disabled = isDisabled;
   }
 }

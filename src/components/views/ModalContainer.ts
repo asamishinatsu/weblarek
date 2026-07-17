@@ -20,12 +20,12 @@ export class ModalContainer extends Component<IModalData> {
     this.contentElement = ensureElement<HTMLElement>('.modal__content', this.container);
 
     this.closeButtonElement.addEventListener('click', () => {
-      this.events.emit('modal:close');
+      this.close();
     });
 
     this.container.addEventListener('click', (event) => {
       if (event.target === this.container) {
-        this.events.emit('modal:close');
+        this.close();
       }
     });
   }
@@ -34,7 +34,7 @@ export class ModalContainer extends Component<IModalData> {
    * @param content содержимое модального окна
    */
   set content(content: HTMLElement) {
-    this.contentElement.appendChild(content);
+    this.contentElement.replaceChildren(content);
   }
 
   /**
@@ -49,6 +49,7 @@ export class ModalContainer extends Component<IModalData> {
    */
   close() {
     this.container.classList.remove('modal_active');
+    this.events.emit('modal:close');
   }
 
   /**

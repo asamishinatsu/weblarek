@@ -15,19 +15,23 @@ export interface ISuccessData {
 }
 
 export interface ICardData {
-  id: string;
   title: string;
   price: number | null;
-  image?: string;
-  category?: string;
-  description?: string;
 }
 
-export interface ICardPreviewData extends ICardData {
-  buttonState: {
-    inCart: boolean;
-    available: boolean;
-  };
+export interface ICardActions {
+  onClick: (event: MouseEvent) => void;
+}
+
+export interface ICardCatalogData extends ICardData {
+  image: string;
+  category: string;
+}
+
+export interface ICardPreviewData extends ICardCatalogData {
+  description: string;
+  buttonText: string;
+  buttonDisabled: boolean;
 }
 
 export interface ICartData {

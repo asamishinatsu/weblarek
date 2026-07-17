@@ -30,7 +30,7 @@ export class FormContacts extends Form {
 
     (this.container as HTMLFormElement).addEventListener('submit', (e) => {
       e.preventDefault();
-      this.events.emit('order:submit');
+      this.events.emit('contacts:submit');
     });
   }
 

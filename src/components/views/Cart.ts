@@ -19,6 +19,7 @@ export class Cart extends Component<ICartData> {
     super(container);
     this.cartListElement = ensureElement<HTMLUListElement>('.cart__list', this.container);
     this.cartButtonElement = ensureElement<HTMLButtonElement>('.cart__button', this.container);
+    this.cartButtonElement.disabled = true;
     this.cartTotalElement = ensureElement<HTMLElement>('.cart__price', this.container);
 
     this.cartButtonElement.addEventListener('click', () => {
